@@ -8,37 +8,173 @@
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-  <main class="shell">
-    <section id="login-view" class="login card">
-      <p class="label">介護事業所向け</p>
-      <h1>伴走支援ナビ</h1>
-      <p id="login-description">伴走支援に参加する施設が、次に行うこと、提出・回答リンク、資料、FAQを確認するための案内ページです。</p>
-      <p id="privacy-notice" class="notice">本ナビは、伴走支援に関係する施設・事務局向けの案内ページです。利用者様や職員様の個人名、個別ケースの詳細など、個人が特定される情報は入力・共有しないでください。</p>
-      <form id="entry-form" class="form">
-        <label>共通ID<input id="common-id" autocomplete="username" required></label>
-        <label>共通パスワード<input id="common-password" type="password" autocomplete="current-password" required></label>
-        <label>施設コード<input id="facility-code" placeholder="例：shiga01" autocomplete="off" required></label>
-        <p id="form-message" class="error" role="alert"></p>
-        <button class="primary" type="submit">入室する</button>
-      </form>
+  <a class="skip-link" href="#main">本文へ移動</a>
+
+  <main id="main" class="app-shell">
+    <section id="login-view" class="login-view" aria-labelledby="login-title">
+      <div class="login-panel">
+        <p class="app-label">介護事業所向け</p>
+        <h1 id="login-title">伴走支援ナビ</h1>
+        <p id="login-description" class="lead">
+          伴走支援に参加する施設が、次に行うこと、提出・回答リンク、資料、FAQを確認するための案内ページです。
+        </p>
+
+        <div class="notice-box" id="login-notice">
+          本ナビは、伴走支援に関係する施設・事務局向けの案内ページです。利用者様や職員様の個人名、個別ケースの詳細など、個人が特定される情報は入力・共有しないでください。
+        </div>
+
+        <form id="entry-form" class="entry-form" novalidate>
+          <label>
+            <span>共通ID</span>
+            <input id="common-id" name="common-id" type="text" autocomplete="username" required>
+          </label>
+          <label>
+            <span>共通パスワード</span>
+            <input id="common-password" name="common-password" type="password" autocomplete="current-password" required>
+          </label>
+          <label>
+            <span>施設コード</span>
+            <input id="facility-code" name="facility-code" type="text" inputmode="latin" autocomplete="off" placeholder="例：shiga01" required>
+          </label>
+          <p id="form-message" class="form-message" role="alert"></p>
+          <button class="primary-button" type="submit">入室する</button>
+        </form>
+      </div>
     </section>
-    <section id="dashboard-view" class="hidden">
-      <header class="header">
-        <div><p class="label">伴走支援ナビ</p><h1 id="facility-name"></h1><p id="facility-meta"></p></div>
-        <button id="logout-button" class="ghost" type="button">入室画面へ戻る</button>
+
+    <section id="dashboard-view" class="dashboard-view hidden" aria-labelledby="facility-heading">
+      <header class="site-header">
+        <div>
+          <p class="app-label">伴走支援ナビ</p>
+          <h1 id="facility-heading">施設名</h1>
+          <p id="facility-subheading" class="header-note">自治体名</p>
+        </div>
+        <button id="logout-button" class="ghost-button" type="button">入室画面へ戻る</button>
       </header>
-      <section id="summary" class="summary"></section>
-      <nav class="nav"><a href="#now">今やること</a><a href="#links">提出・回答リンク</a><a href="#materials">資料・動画</a><a href="#ai">施策検討・AI活用</a><a href="#deliverables">成果物</a><a href="#faq">FAQ</a><a href="#terms">用語集</a><a href="#notices">利用上の注意</a></nav>
-      <section id="now" class="section"><p class="label">最初に確認</p><h2>今やること</h2><div id="actions" class="tasks"></div></section>
-      <section id="links" class="section"><p class="label">提出・回答</p><h2>提出・回答リンク</h2><div id="link-list" class="grid"></div></section>
-      <section id="materials" class="section"><p class="label">確認資料</p><h2>資料・動画</h2><div id="content-list" class="grid"></div></section>
-      <section id="ai" class="section"><p class="label">検討支援</p><h2>施策検討・AI活用</h2><div id="ai-list" class="grid"></div><div id="ai-notes" class="list"></div></section>
-      <section id="deliverables" class="section"><p class="label">共通成果物</p><h2>成果物</h2><div id="deliverable-list" class="grid"></div></section>
-      <section id="faq" class="section"><p class="label">よくある質問</p><h2>FAQ</h2><div id="faq-list" class="list"></div></section>
-      <section id="terms" class="section"><p class="label">言葉の確認</p><h2>用語集</h2><div id="term-list" class="grid"></div></section>
-      <section id="notices" class="section"><p class="label">情報管理</p><h2>利用上の注意</h2><div id="notice-list" class="list"></div></section>
+
+      <section class="dashboard-summary" aria-label="施設の概要">
+        <article class="summary-card">
+          <span>自治体</span>
+          <strong id="summary-municipality">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>サービス種別</span>
+          <strong id="summary-service">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>現在のステップ</span>
+          <strong id="summary-step">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>次回予定</span>
+          <strong id="summary-schedule">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>締切</span>
+          <strong id="summary-deadline">-</strong>
+        </article>
+        <article class="summary-card">
+          <span>問い合わせ先</span>
+          <strong id="summary-contact">-</strong>
+        </article>
+      </section>
+
+      <nav id="section-nav" class="section-nav" aria-label="ページ内メニュー"></nav>
+
+      <section id="now" class="content-section focus-section">
+        <div class="section-heading">
+          <p class="app-label">最初に確認</p>
+          <h2>今やること</h2>
+        </div>
+        <div id="action-list" class="task-list"></div>
+      </section>
+
+      <section id="schedule" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">日程確認</p>
+          <h2>今後の予定</h2>
+        </div>
+        <p id="schedule-intro" class="section-lead"></p>
+        <div id="schedule-list" class="schedule-list"></div>
+        <div id="schedule-notes" class="notice-list"></div>
+      </section>
+
+      <section id="progress" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">進捗確認</p>
+          <h2>現在の進捗</h2>
+        </div>
+        <p id="progress-intro" class="section-lead"></p>
+        <div id="progress-list" class="progress-list"></div>
+      </section>
+
+      <section id="links" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">提出・回答</p>
+          <h2>提出・回答リンク</h2>
+        </div>
+        <div id="submission-links" class="card-grid"></div>
+      </section>
+
+      <section id="materials" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">確認資料</p>
+          <h2>資料・動画</h2>
+        </div>
+        <div id="content-list" class="card-grid"></div>
+      </section>
+
+      <section id="ai" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">検討支援</p>
+          <h2>施策検討・AI活用</h2>
+        </div>
+        <div id="ai-links" class="card-grid"></div>
+        <div id="ai-notes" class="notice-list"></div>
+      </section>
+
+      <section id="deliverables" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">共通成果物</p>
+          <h2>成果物</h2>
+        </div>
+        <div id="deliverable-list" class="card-grid"></div>
+      </section>
+
+      <section id="faq" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">よくある質問</p>
+          <h2>FAQ</h2>
+        </div>
+        <div id="faq-list" class="faq-list"></div>
+      </section>
+
+      <section id="terms" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">言葉の確認</p>
+          <h2>用語集</h2>
+        </div>
+        <div id="term-list" class="term-grid"></div>
+      </section>
+
+      <section id="notices" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">情報管理</p>
+          <h2>利用上の注意・情報管理</h2>
+        </div>
+        <div id="notice-list" class="notice-list"></div>
+      </section>
+
+      <section id="contact" class="content-section">
+        <div class="section-heading">
+          <p class="app-label">連絡先</p>
+          <h2>問い合わせ</h2>
+        </div>
+        <div id="contact-panel" class="contact-panel"></div>
+      </section>
     </section>
   </main>
+
   <script src="assets/app.js" defer></script>
 </body>
 </html>

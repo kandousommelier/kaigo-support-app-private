@@ -1,1 +1,101 @@
-[{"faqId":"faq-overview-01","category":"伴走支援全体","question":"伴走支援ナビは何のために使いますか。","answer":"次に行う作業、提出リンク、資料、FAQを確認するために使います。回答データや個人情報は伴走支援ナビには保存しません。","municipalityCode":"common","facilityCode":"common","sortOrder":10},{"faqId":"faq-overview-02","category":"伴走支援全体","question":"施設コードが分からない場合はどうすればよいですか。","answer":"案内メールに記載された施設コードを確認してください。不明な場合は事務局へお問い合わせください。","municipalityCode":"common","facilityCode":"common","sortOrder":20},{"faqId":"faq-survey-01","category":"アンケート","question":"事前アンケートには何を書けばよいですか。","answer":"施設全体の状況や取り組みたいテーマを、個人が特定されない形で記載してください。","municipalityCode":"common","facilityCode":"common","sortOrder":30},{"faqId":"faq-interview-01","category":"インタビュー","question":"インタビュー参加者は誰がよいですか。","answer":"現場の状況を説明できる方、取り組みの推進に関わる方を中心に調整してください。個人名はナビ上には入力しないでください。","municipalityCode":"common","facilityCode":"common","sortOrder":40},{"faqId":"faq-mushimegane-01","category":"問題虫めがね","question":"問題虫めがねは誰に回答してもらいますか。","answer":"取り組みに関わる職員へ展開してください。個別ケースの詳細や個人名は記載しないよう周知してください。","municipalityCode":"common","facilityCode":"common","sortOrder":50},{"faqId":"faq-privacy-01","category":"個人情報・情報管理","question":"伴走支援ナビに入力してはいけない情報は何ですか。","answer":"利用者名、職員名、個別ケースの詳細、施設内部の生々しい情報、行政共有前の所感は入力しないでください。","municipalityCode":"common","facilityCode":"common","sortOrder":60},{"faqId":"faq-pdca-01","category":"PDCAシート","question":"PDCAシートはいつ使いますか。","answer":"施策の実行前後に、計画、実施、確認、改善を整理するために使います。","municipalityCode":"common","facilityCode":"common","sortOrder":70},{"faqId":"faq-numeric-01","category":"数値目標管理","question":"数値目標はどのように決めますか。","answer":"施設で確認しやすく、取り組みの変化を見られる指標を支援者と相談して設定してください。","municipalityCode":"common","facilityCode":"common","sortOrder":80},{"faqId":"faq-interim-01","category":"中間報告","question":"中間報告では何をまとめますか。","answer":"これまでの実施内容、見えてきた変化、困っていること、今後の予定をまとめます。","municipalityCode":"common","facilityCode":"common","sortOrder":90},{"faqId":"faq-final-01","category":"最終報告","question":"最終報告で注意することはありますか。","answer":"公開されても支障のない内容に整理し、個人情報や個別ケースの詳細を含めないでください。","municipalityCode":"common","facilityCode":"common","sortOrder":100},{"faqId":"faq-ai-01","category":"AI活用","question":"AIに入力してよい情報は何ですか。","answer":"個人や施設内部の機密が特定されない、一般化した相談内容だけを入力してください。AIの回答は最終判断ではありません。","municipalityCode":"common","facilityCode":"common","sortOrder":110}]
+[
+  {
+    "faqId": "faq-overview-01",
+    "category": "伴走支援全体",
+    "question": "伴走支援ナビは何のために使いますか。",
+    "answer": "次に行う作業、提出リンク、資料、FAQを確認するために使います。回答データや個人情報は伴走支援ナビには保存しません。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 10
+  },
+  {
+    "faqId": "faq-overview-02",
+    "category": "伴走支援全体",
+    "question": "施設コードが分からない場合はどうすればよいですか。",
+    "answer": "案内メールに記載された施設コードを確認してください。不明な場合は事務局へお問い合わせください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 20
+  },
+  {
+    "faqId": "faq-survey-01",
+    "category": "アンケート",
+    "question": "事前アンケートには何を書けばよいですか。",
+    "answer": "施設全体の状況や取り組みたいテーマを、個人が特定されない形で記載してください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 30
+  },
+  {
+    "faqId": "faq-interview-01",
+    "category": "インタビュー",
+    "question": "インタビュー参加者は誰がよいですか。",
+    "answer": "現場の状況を説明できる方、取り組みの推進に関わる方を中心に調整してください。個人名はナビ上には入力しないでください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 40
+  },
+  {
+    "faqId": "faq-mushimegane-01",
+    "category": "問題虫めがね",
+    "question": "問題虫めがねは誰に回答してもらいますか。",
+    "answer": "取り組みに関わる職員へ展開してください。個別ケースの詳細や個人名は記載しないよう周知してください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 50
+  },
+  {
+    "faqId": "faq-privacy-01",
+    "category": "個人情報・情報管理",
+    "question": "伴走支援ナビに入力してはいけない情報は何ですか。",
+    "answer": "利用者名、職員名、個別ケースの詳細、施設内部の生々しい情報、行政共有前の所感は入力しないでください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 60
+  },
+  {
+    "faqId": "faq-pdca-01",
+    "category": "PDCAシート",
+    "question": "PDCAシートはいつ使いますか。",
+    "answer": "施策の実行前後に、計画、実施、確認、改善を整理するために使います。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 70
+  },
+  {
+    "faqId": "faq-numeric-01",
+    "category": "数値目標管理",
+    "question": "数値目標はどのように決めますか。",
+    "answer": "施設で確認しやすく、取り組みの変化を見られる指標を支援者と相談して設定してください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 80
+  },
+  {
+    "faqId": "faq-interim-01",
+    "category": "中間報告",
+    "question": "中間報告では何をまとめますか。",
+    "answer": "これまでの実施内容、見えてきた変化、困っていること、今後の予定をまとめます。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 90
+  },
+  {
+    "faqId": "faq-final-01",
+    "category": "最終報告",
+    "question": "最終報告で注意することはありますか。",
+    "answer": "公開されても支障のない内容に整理し、個人情報や個別ケースの詳細を含めないでください。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 100
+  },
+  {
+    "faqId": "faq-ai-01",
+    "category": "AI活用",
+    "question": "AIに入力してよい情報は何ですか。",
+    "answer": "個人や施設内部の機密が特定されない、一般化した相談内容だけを入力してください。AIの回答は最終判断ではありません。",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "sortOrder": 110
+  }
+]

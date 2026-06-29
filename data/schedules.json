@@ -1,0 +1,36 @@
+[
+  {
+    "scheduleId": "common-main",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "description": "今後の予定は以下のとおりです。",
+    "events": [
+      {
+        "date": "〇月〇日",
+        "title": "定例会",
+        "participants": "管理者・推進リーダー"
+      },
+      {
+        "date": "〇月〇日",
+        "title": "初回訪問（2時間）",
+        "participants": "管理者・推進リーダー・関係職員"
+      },
+      {
+        "date": "〇月〇日",
+        "title": "中間報告会",
+        "participants": "全モデル事業所"
+      },
+      {
+        "date": "〇月〇日",
+        "title": "最終報告会",
+        "participants": "全モデル事業所"
+      }
+    ],
+    "notes": [
+      "本事業では、定例会で進捗や次に行うことを確認します。",
+      "中間報告会では、改善計画を確認し、実行に進むための合意を行います。",
+      "最終報告会では、活動結果を確認し、今後の展開につなげます。"
+    ],
+    "sortOrder": 10
+  }
+]

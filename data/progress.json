@@ -1,0 +1,89 @@
+[
+  {
+    "progressId": "common-main",
+    "municipalityCode": "common",
+    "facilityCode": "common",
+    "description": "本事業の現在の進捗は以下のとおりです。",
+    "items": [
+      {
+        "status": "済",
+        "state": "done",
+        "title": "事前調査",
+        "description": "基本情報・事前確認"
+      },
+      {
+        "status": "済",
+        "state": "done",
+        "title": "初回打合せ",
+        "description": "事業説明・進め方確認"
+      },
+      {
+        "status": "今ここ",
+        "state": "current",
+        "title": "インタビュー",
+        "description": "事前アンケートをもとに課題を深掘り"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "キックオフ",
+        "description": "職員向け周知・管理者メッセージ"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "問題虫めがね",
+        "description": "職員の「困った」を集める"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "因果関係図",
+        "description": "課題構造を整理"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "クイックウィン・ショートウィン",
+        "description": "短期改善実行計画を作成"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "活動実施・PDCA",
+        "description": "改善活動を実施"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "モニタリング・効果測定",
+        "description": "効果を確認"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "中間報告会",
+        "description": "改善計画を確認・承認"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "最終報告会",
+        "description": "活動結果を確認"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "事例シート・活動動画",
+        "description": "県内公開用コンテンツ作成"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "モデル事業所交流会",
+        "description": "モデル事業所、県内事業所同士の交流"
+      }
+    ],
+    "sortOrder": 10
+  }
+]

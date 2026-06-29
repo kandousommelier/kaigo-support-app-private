@@ -1,1 +1,68 @@
-[{"municipalityCode":"shiga","municipalityName":"滋賀県","projectName":"介護現場革新等伴走支援事業","officeName":"滋賀県 事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"案内メールに記載された事務局連絡先へお問い合わせください。","displayMessage":"滋賀県の伴走支援対象施設向けの案内です。","isActive":true},{"municipalityCode":"nagano","municipalityName":"長野県","projectName":"介護現場革新等伴走支援事業","officeName":"長野県 事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"案内メールに記載された事務局連絡先へお問い合わせください。","displayMessage":"長野県の伴走支援対象施設向けの案内です。","isActive":true},{"municipalityCode":"matsumoto","municipalityName":"松本市","projectName":"介護現場革新等伴走支援事業","officeName":"松本市 事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"案内メールに記載された事務局連絡先へお問い合わせください。","displayMessage":"松本市の伴走支援対象施設向けの案内です。","isActive":true},{"municipalityCode":"matsuyama","municipalityName":"松山市","projectName":"介護現場革新等伴走支援事業","officeName":"松山市 事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"案内メールに記載された事務局連絡先へお問い合わせください。","displayMessage":"松山市の伴走支援対象施設向けの案内です。","isActive":true},{"municipalityCode":"kawasaki","municipalityName":"川崎市","projectName":"介護現場革新等伴走支援事業","officeName":"川崎市 事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"案内メールに記載された事務局連絡先へお問い合わせください。","displayMessage":"川崎市の伴走支援対象施設向けの案内です。","isActive":true},{"municipalityCode":"reserve","municipalityName":"その他リザーブ","projectName":"介護現場革新等伴走支援事業","officeName":"事務局","contactName":"伴走支援ナビ担当","contactEmail":"support@example.com","contactNote":"リザーブ枠は利用開始時に事務局で表示設定を変更してください。","displayMessage":"追加施設用のリザーブ枠です。","isActive":false}]
+[
+  {
+    "municipalityCode": "shiga",
+    "municipalityName": "滋賀県",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "滋賀県 事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "案内メールに記載された事務局連絡先へお問い合わせください。",
+    "displayMessage": "滋賀県の伴走支援対象施設向けの案内です。",
+    "isActive": true
+  },
+  {
+    "municipalityCode": "nagano",
+    "municipalityName": "長野県",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "長野県 事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "案内メールに記載された事務局連絡先へお問い合わせください。",
+    "displayMessage": "長野県の伴走支援対象施設向けの案内です。",
+    "isActive": true
+  },
+  {
+    "municipalityCode": "matsumoto",
+    "municipalityName": "松本市",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "松本市 事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "案内メールに記載された事務局連絡先へお問い合わせください。",
+    "displayMessage": "松本市の伴走支援対象施設向けの案内です。",
+    "isActive": true
+  },
+  {
+    "municipalityCode": "matsuyama",
+    "municipalityName": "松山市",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "松山市 事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "案内メールに記載された事務局連絡先へお問い合わせください。",
+    "displayMessage": "松山市の伴走支援対象施設向けの案内です。",
+    "isActive": true
+  },
+  {
+    "municipalityCode": "kawasaki",
+    "municipalityName": "川崎市",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "川崎市 事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "案内メールに記載された事務局連絡先へお問い合わせください。",
+    "displayMessage": "川崎市の伴走支援対象施設向けの案内です。",
+    "isActive": true
+  },
+  {
+    "municipalityCode": "reserve",
+    "municipalityName": "その他リザーブ",
+    "projectName": "介護現場革新等伴走支援事業",
+    "officeName": "事務局",
+    "contactName": "伴走支援ナビ担当",
+    "contactEmail": "support@example.com",
+    "contactNote": "リザーブ枠は利用開始時に事務局で表示設定を変更してください。",
+    "displayMessage": "追加施設用のリザーブ枠です。",
+    "isActive": false
+  }
+]

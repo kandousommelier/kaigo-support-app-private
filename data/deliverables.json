@@ -1,1 +1,74 @@
-[{"deliverableId":"pdca-sheet","title":"PDCAシート","purpose":"取り組みの計画、実行、確認、改善を整理し、次回の支援につなげます。","timing":"施策検討後から随時","owner":"施設・支援者","inputItems":["施策名","目的","実施内容","確認結果","次の改善"],"templateUrl":"","sampleUrl":"","notes":"個人名や個別ケースの詳細は記載しないでください。","sortOrder":10},{"deliverableId":"interim-report","title":"中間報告","purpose":"途中経過、実施状況、困りごと、今後の予定を整理します。","timing":"中間確認前","owner":"施設","inputItems":["取り組み状況","見えてきた変化","課題","今後の予定"],"templateUrl":"","sampleUrl":"","notes":"行政共有前の生々しい所感は記載範囲に注意してください。","sortOrder":20},{"deliverableId":"numeric-target","title":"数値目標管理","purpose":"取り組みの成果を数値で確認し、改善の判断材料にします。","timing":"施策開始前から定期確認","owner":"施設・支援者","inputItems":["指標名","現状値","目標値","確認頻度","実績値"],"templateUrl":"","sampleUrl":"","notes":"数値の定義を施設内でそろえてください。","sortOrder":30},{"deliverableId":"final-report","title":"最終報告","purpose":"取り組みの成果、学び、今後の継続方針をまとめます。","timing":"伴走支援の終盤","owner":"施設","inputItems":["背景","実施内容","成果","今後の展開","支援を通じた学び"],"templateUrl":"","sampleUrl":"","notes":"公開してよい情報だけを整理してください。","sortOrder":40},{"deliverableId":"outcome-outline","title":"成果報告アウトライン","purpose":"成果報告の構成を事前に整理し、説明の流れを確認します。","timing":"成果報告準備時","owner":"施設・支援者","inputItems":["伝えたい成果","取り組みの流れ","印象的な変化","今後の予定"],"templateUrl":"","sampleUrl":"","notes":"施設内で公開可否を確認してください。","sortOrder":50},{"deliverableId":"case-sheet","title":"事例シート","purpose":"他施設にも参考になる取り組み事例として整理します。","timing":"成果整理時","owner":"施設・支援者","inputItems":["施設概要","課題","施策","成果","工夫した点"],"templateUrl":"","sampleUrl":"","notes":"利用者や職員が特定される情報は記載しないでください。","sortOrder":60}]
+[
+  {
+    "deliverableId": "pdca-sheet",
+    "title": "PDCAシート",
+    "purpose": "取り組みの計画、実行、確認、改善を整理し、次回の支援につなげます。",
+    "timing": "施策検討後から随時",
+    "owner": "施設・支援者",
+    "inputItems": ["施策名", "目的", "実施内容", "確認結果", "次の改善"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "個人名や個別ケースの詳細は記載しないでください。",
+    "sortOrder": 10
+  },
+  {
+    "deliverableId": "interim-report",
+    "title": "中間報告",
+    "purpose": "途中経過、実施状況、困りごと、今後の予定を整理します。",
+    "timing": "中間確認前",
+    "owner": "施設",
+    "inputItems": ["取り組み状況", "見えてきた変化", "課題", "今後の予定"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "行政共有前の生々しい所感は記載範囲に注意してください。",
+    "sortOrder": 20
+  },
+  {
+    "deliverableId": "numeric-target",
+    "title": "数値目標管理",
+    "purpose": "取り組みの成果を数値で確認し、改善の判断材料にします。",
+    "timing": "施策開始前から定期確認",
+    "owner": "施設・支援者",
+    "inputItems": ["指標名", "現状値", "目標値", "確認頻度", "実績値"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "数値の定義を施設内でそろえてください。",
+    "sortOrder": 30
+  },
+  {
+    "deliverableId": "final-report",
+    "title": "最終報告",
+    "purpose": "取り組みの成果、学び、今後の継続方針をまとめます。",
+    "timing": "伴走支援の終盤",
+    "owner": "施設",
+    "inputItems": ["背景", "実施内容", "成果", "今後の展開", "支援を通じた学び"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "公開してよい情報だけを整理してください。",
+    "sortOrder": 40
+  },
+  {
+    "deliverableId": "outcome-outline",
+    "title": "成果報告アウトライン",
+    "purpose": "成果報告の構成を事前に整理し、説明の流れを確認します。",
+    "timing": "成果報告準備時",
+    "owner": "施設・支援者",
+    "inputItems": ["伝えたい成果", "取り組みの流れ", "印象的な変化", "今後の予定"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "施設内で公開可否を確認してください。",
+    "sortOrder": 50
+  },
+  {
+    "deliverableId": "case-sheet",
+    "title": "事例シート",
+    "purpose": "他施設にも参考になる取り組み事例として整理します。",
+    "timing": "成果整理時",
+    "owner": "施設・支援者",
+    "inputItems": ["施設概要", "課題", "施策", "成果", "工夫した点"],
+    "templateUrl": "",
+    "sampleUrl": "",
+    "notes": "利用者や職員が特定される情報は記載しないでください。",
+    "sortOrder": 60
+  }
+]

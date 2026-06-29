@@ -1,180 +1,623 @@
 (() => {
-  const files = {
+  const DATA_FILES = {
     config: "data/config.json",
     municipalities: "data/municipalities.json",
     facilities: "data/facilities.json",
     steps: "data/steps.json",
+    pages: "data/pages.json",
+    schedules: "data/schedules.json",
+    progress: "data/progress.json",
     links: "data/links.json",
     contents: "data/contents.json",
     deliverables: "data/deliverables.json",
     faq: "data/faq.json",
     terms: "data/terms.json",
-    notices: "data/notices.json"
+    notices: "data/notices.json",
+    contact: "data/contact.json"
   };
-  let data = {};
-  let currentFacility = null;
-  const $ = (selector) => document.querySelector(selector);
-  const arr = (value) => Array.isArray(value) ? value : value ? [value] : [];
-  const sort = (a, b) => (a.sortOrder ?? 999) - (b.sortOrder ?? 999);
+
+  const state = {
+    data: null,
+    facility: null
+  };
+
+  const els = {};
 
   document.addEventListener("DOMContentLoaded", init);
 
   async function init() {
+    collectElements();
+    setLoadingState(true);
+
     try {
-      data = Object.fromEntries(await Promise.all(Object.entries(files).map(async ([key, path]) => {
-        const response = await fetch(path, { cache: "no-cache" });
-        if (!response.ok) throw new Error(`${path} を読み込めませんでした`);
-        return [key, await response.json()];
-      })));
-      document.title = data.config.appName;
-      $("#login-description").textContent = data.config.description;
-      $("#privacy-notice").textContent = data.config.privacyNotice;
-      $("#entry-form").addEventListener("submit", handleLogin);
-      $("#logout-button").addEventListener("click", logout);
+      state.data = await loadAllData();
+      hydrateStaticText();
+      buildSectionNav();
+      bindEvents();
+      setLoadingState(false);
     } catch (error) {
-      $("#form-message").textContent = "データを読み込めませんでした。GitHub Pages上で開いてください。";
+      showMessage("データを読み込めませんでした。GitHub Pagesまたはローカルサーバー上で開いてください。");
+      setLoadingState(false);
       console.error(error);
     }
   }
 
-  function handleLogin(event) {
-    event.preventDefault();
-    const id = $("#common-id").value.trim();
-    const password = $("#common-password").value;
-    const facilityCode = $("#facility-code").value.trim().toLowerCase();
-    $("#form-message").textContent = "";
-    if (id !== data.config.commonId || password !== data.config.commonPassword) {
-      $("#form-message").textContent = data.config.messages.invalidCredential;
-      return;
-    }
-    const facility = data.facilities.find((item) => item.facilityCode.toLowerCase() === facilityCode && item.isVisible);
-    if (!facility) {
-      $("#form-message").textContent = data.config.messages.invalidFacility;
-      return;
-    }
-    currentFacility = facility;
-    renderDashboard(facility);
-    $("#login-view").classList.add("hidden");
-    $("#dashboard-view").classList.remove("hidden");
-    window.scrollTo(0, 0);
+  function collectElements() {
+    els.loginView = document.querySelector("#login-view");
+    els.dashboardView = document.querySelector("#dashboard-view");
+    els.entryForm = document.querySelector("#entry-form");
+    els.commonId = document.querySelector("#common-id");
+    els.commonPassword = document.querySelector("#common-password");
+    els.facilityCode = document.querySelector("#facility-code");
+    els.formMessage = document.querySelector("#form-message");
+    els.loginNotice = document.querySelector("#login-notice");
+    els.loginDescription = document.querySelector("#login-description");
+    els.logoutButton = document.querySelector("#logout-button");
+    els.sectionNav = document.querySelector("#section-nav");
+    els.facilityHeading = document.querySelector("#facility-heading");
+    els.facilitySubheading = document.querySelector("#facility-subheading");
+    els.summaryMunicipality = document.querySelector("#summary-municipality");
+    els.summaryService = document.querySelector("#summary-service");
+    els.summaryStep = document.querySelector("#summary-step");
+    els.summarySchedule = document.querySelector("#summary-schedule");
+    els.summaryDeadline = document.querySelector("#summary-deadline");
+    els.summaryContact = document.querySelector("#summary-contact");
+    els.actionList = document.querySelector("#action-list");
+    els.scheduleIntro = document.querySelector("#schedule-intro");
+    els.scheduleList = document.querySelector("#schedule-list");
+    els.scheduleNotes = document.querySelector("#schedule-notes");
+    els.progressIntro = document.querySelector("#progress-intro");
+    els.progressList = document.querySelector("#progress-list");
+    els.submissionLinks = document.querySelector("#submission-links");
+    els.contentList = document.querySelector("#content-list");
+    els.aiLinks = document.querySelector("#ai-links");
+    els.aiNotes = document.querySelector("#ai-notes");
+    els.deliverableList = document.querySelector("#deliverable-list");
+    els.faqList = document.querySelector("#faq-list");
+    els.termList = document.querySelector("#term-list");
+    els.noticeList = document.querySelector("#notice-list");
+    els.contactPanel = document.querySelector("#contact-panel");
   }
 
-  function logout() {
-    currentFacility = null;
-    $("#dashboard-view").classList.add("hidden");
-    $("#login-view").classList.remove("hidden");
-    $("#entry-form").reset();
-    $("#form-message").textContent = "";
+  async function loadAllData() {
+    const entries = await Promise.all(
+      Object.entries(DATA_FILES).map(async ([key, path]) => {
+        const response = await fetch(path, { cache: "no-cache" });
+        if (!response.ok) {
+          throw new Error(`${path} を読み込めませんでした`);
+        }
+        return [key, await response.json()];
+      })
+    );
+    return Object.fromEntries(entries);
+  }
+
+  function hydrateStaticText() {
+    document.title = state.data.config.appName;
+    els.loginDescription.textContent = state.data.config.description;
+    els.loginNotice.textContent = state.data.config.privacyNotice;
+  }
+
+  function bindEvents() {
+    els.entryForm.addEventListener("submit", handleLogin);
+    els.logoutButton.addEventListener("click", () => {
+      state.facility = null;
+      els.dashboardView.classList.add("hidden");
+      els.loginView.classList.remove("hidden");
+      els.entryForm.reset();
+      showMessage("");
+      els.commonId.focus();
+    });
+  }
+
+  function setLoadingState(isLoading) {
+    const button = els.entryForm.querySelector("button");
+    button.disabled = isLoading;
+    button.textContent = isLoading ? "読み込み中" : "入室する";
+  }
+
+  function handleLogin(event) {
+    event.preventDefault();
+    showMessage("");
+
+    const config = state.data.config;
+    const enteredId = els.commonId.value.trim();
+    const enteredPassword = els.commonPassword.value;
+    const enteredCode = els.facilityCode.value.trim().toLowerCase();
+
+    if (enteredId !== config.commonId || enteredPassword !== config.commonPassword) {
+      showMessage(config.messages.invalidCredential);
+      return;
+    }
+
+    const facility = state.data.facilities.find(
+      (item) => item.facilityCode.toLowerCase() === enteredCode && item.isVisible
+    );
+
+    if (!facility) {
+      showMessage(config.messages.invalidFacility);
+      return;
+    }
+
+    state.facility = facility;
+    renderDashboard(facility);
+    els.loginView.classList.add("hidden");
+    els.dashboardView.classList.remove("hidden");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function showMessage(message) {
+    els.formMessage.textContent = message;
+  }
+
+  function buildSectionNav() {
+    const pages = [...state.data.pages]
+      .filter((page) => page.isVisible)
+      .sort(bySortOrder);
+    els.sectionNav.replaceChildren(
+      ...pages.map((page) => {
+        const anchor = document.createElement("a");
+        anchor.href = `#${page.sectionId}`;
+        anchor.textContent = page.title;
+        return anchor;
+      })
+    );
   }
 
   function renderDashboard(facility) {
-    const municipality = data.municipalities.find((item) => item.municipalityCode === facility.municipalityCode) || {};
-    const step = data.steps.find((item) => item.stepId === facility.currentStep) || { stepName: "要設定", defaultActions: [] };
-    $("#facility-name").textContent = facility.facilityName;
-    $("#facility-meta").textContent = `${municipality.municipalityName || "要設定"} / ${facility.serviceType}`;
-    $("#summary").replaceChildren(
-      summaryCard("自治体", municipality.municipalityName || "要設定"),
-      summaryCard("サービス種別", facility.serviceType),
-      summaryCard("現在のステップ", step.stepName),
-      summaryCard("次回予定", facility.nextSchedule || "要設定"),
-      summaryCard("締切", facility.deadline || "要設定"),
-      summaryCard("問い合わせ先", facility.contactNote || municipality.contactNote || "案内メールをご確認ください")
-    );
-    renderActions(facility, step);
-    renderCards("#link-list", scoped(data.links, facility).filter((item) => item.category === "提出・回答" || item.category === "よく使うリンク"), linkCard);
-    renderCards("#content-list", scoped(data.contents, facility), contentCard);
-    renderCards("#ai-list", scoped(data.links, facility).filter((item) => item.category === "施策検討・AI活用"), linkCard);
-    $("#ai-notes").replaceChildren(...data.config.aiUsageNotes.map((note) => notice("AI活用時の注意", note)));
-    renderCards("#deliverable-list", [...data.deliverables].sort(sort), deliverableCard);
-    renderFaq(facility);
-    renderCards("#term-list", [...data.terms].sort(sort), termCard);
-    $("#notice-list").replaceChildren(...[...data.notices].sort(sort).map((item) => notice(item.title, item.body)));
-  }
+    const municipality = getMunicipality(facility.municipalityCode);
+    const step = getStep(facility.currentStep);
 
-  function summaryCard(label, value) {
-    const article = document.createElement("article");
-    article.innerHTML = `<span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong>`;
-    return article;
+    els.facilityHeading.textContent = facility.facilityName;
+    els.facilitySubheading.textContent = `${municipality.municipalityName} / ${facility.serviceType}`;
+    els.summaryMunicipality.textContent = municipality.municipalityName;
+    els.summaryService.textContent = facility.serviceType;
+    els.summaryStep.textContent = step.stepName;
+    els.summarySchedule.textContent = facility.nextSchedule || "未設定";
+    els.summaryDeadline.textContent = facility.deadline || "未設定";
+    els.summaryContact.textContent = state.data.contact.formLabel || facility.contactNote || municipality.contactNote || "案内メールをご確認ください。";
+
+    renderActions(facility, step);
+    renderSchedules(facility);
+    renderProgress(facility);
+    renderLinks(facility);
+    renderContents(facility);
+    renderAiSection(facility);
+    renderDeliverables();
+    renderFaq(facility);
+    renderTerms();
+    renderNotices();
+    renderContact();
   }
 
   function renderActions(facility, step) {
-    const actions = arr(facility.nextAction).length ? arr(facility.nextAction) : arr(step.defaultActions);
-    $("#actions").replaceChildren(...actions.map((action, index) => {
-      const article = document.createElement("article");
-      article.className = "task";
-      article.innerHTML = `<span class="mark">${index + 1}</span><div><h3>${escapeHtml(action)}</h3><p>${escapeHtml(facility.contactNote || "不明点は案内メール記載の問い合わせ先へ確認してください。")}</p></div>`;
-      return article;
-    }));
+    const actions = normalizeArray(facility.nextAction).length
+      ? normalizeArray(facility.nextAction)
+      : normalizeArray(step.defaultActions);
+
+    els.actionList.replaceChildren(
+      ...actions.map((action, index) => {
+        const item = document.createElement("article");
+        item.className = "task-item";
+
+        const marker = document.createElement("span");
+        marker.className = "task-marker";
+        marker.textContent = index + 1;
+
+        const body = document.createElement("div");
+        const title = document.createElement("p");
+        title.className = "task-title";
+        title.textContent = action;
+        const note = document.createElement("p");
+        note.className = "task-note";
+        note.textContent = facility.contactNote || "不明点は案内メール記載の問い合わせ先へ確認してください。";
+        body.append(title, note);
+
+        item.append(marker, body);
+        return item;
+      })
+    );
   }
 
-  function renderCards(selector, items, mapper) {
-    const sorted = [...items].sort((a, b) => (a._scopeRank ?? 9) - (b._scopeRank ?? 9) || sort(a, b));
-    const container = $(selector);
-    if (!sorted.length) {
+  function renderLinks(facility) {
+    const links = scopedItems(state.data.links, facility)
+      .filter((item) => item.category === "提出・回答" || item.category === "よく使うリンク")
+      .sort(byScopeThenSort);
+
+    renderCardGrid(els.submissionLinks, links, (item) =>
+      createInfoCard({
+        title: item.title,
+        description: item.description,
+        status: displayStatus(item),
+        statusType: item.url ? "ready" : "pending",
+        scope: displayScope(item, facility),
+        buttonText: item.url ? "開く" : displayStatus(item),
+        url: item.url,
+        note: item.note ? `${item.category} / ${item.note}` : item.category
+      })
+    );
+  }
+
+  function renderSchedules(facility) {
+    const schedule = scopedItems(state.data.schedules, facility).sort(byScopeThenSort)[0];
+    if (!schedule) {
+      els.scheduleIntro.textContent = "";
+      renderCardGrid(els.scheduleList, [], (item) => item);
+      els.scheduleNotes.replaceChildren();
+      return;
+    }
+
+    els.scheduleIntro.textContent = schedule.description || "今後の予定は以下のとおりです。";
+    els.scheduleList.replaceChildren(
+      ...normalizeArray(schedule.events).map((event) => {
+        const item = document.createElement("article");
+        item.className = "schedule-card";
+
+        const date = document.createElement("span");
+        date.className = "schedule-date";
+        date.textContent = event.date || "日程調整中";
+
+        const title = document.createElement("h3");
+        title.textContent = event.title;
+
+        const participants = document.createElement("p");
+        participants.textContent = `参加者：${event.participants || "調整中"}`;
+
+        item.append(date, title, participants);
+        return item;
+      })
+    );
+
+    els.scheduleNotes.replaceChildren(
+      ...normalizeArray(schedule.notes).map((note) => createNoticeItem("予定の補足", note))
+    );
+  }
+
+  function renderProgress(facility) {
+    const progress = scopedItems(state.data.progress, facility).sort(byScopeThenSort)[0];
+    if (!progress) {
+      els.progressIntro.textContent = "";
+      els.progressList.replaceChildren();
+      return;
+    }
+
+    els.progressIntro.textContent = progress.description || "本事業の現在の進捗は以下のとおりです。";
+    els.progressList.replaceChildren(
+      ...normalizeArray(progress.items).map((item) => {
+        const row = document.createElement("article");
+        row.className = `progress-item ${item.state || "todo"}`;
+
+        const status = document.createElement("span");
+        status.className = "progress-status";
+        status.textContent = item.status;
+
+        const body = document.createElement("div");
+        const title = document.createElement("h3");
+        title.textContent = item.title;
+        const description = document.createElement("p");
+        description.textContent = item.description;
+        body.append(title, description);
+
+        row.append(status, body);
+        return row;
+      })
+    );
+  }
+
+  function renderContents(facility) {
+    const contents = scopedItems(state.data.contents, facility).sort(byScopeThenSort);
+    renderCardGrid(els.contentList, contents, (item) =>
+      createInfoCard({
+        title: item.title,
+        description: item.description,
+        status: displayStatus(item),
+        statusType: item.url ? "ready" : "pending",
+        scope: displayScope(item, facility),
+        buttonText: item.url ? "確認する" : displayStatus(item),
+        url: item.url,
+        note: item.type
+      })
+    );
+  }
+
+  function renderAiSection(facility) {
+    const links = scopedItems(state.data.links, facility)
+      .filter((item) => item.category === "施策検討・AI活用")
+      .sort(byScopeThenSort);
+    renderCardGrid(els.aiLinks, links, (item) =>
+      createInfoCard({
+        title: item.title,
+        description: item.description,
+        status: displayStatus(item),
+        statusType: item.url ? "ready" : "pending",
+        scope: displayScope(item, facility),
+        buttonText: item.url ? "開く" : displayStatus(item),
+        url: item.url,
+        note: item.note
+      })
+    );
+
+    els.aiNotes.replaceChildren(
+      ...state.data.config.aiUsageNotes.map((note) =>
+        createNoticeItem("AI活用時の注意", note)
+      )
+    );
+  }
+
+  function renderDeliverables() {
+    const deliverables = [...state.data.deliverables].sort(bySortOrder);
+    renderCardGrid(els.deliverableList, deliverables, (item) => {
+      const card = createInfoCard({
+        title: item.title,
+        description: item.purpose,
+        status: item.templateUrl || item.sampleUrl ? "一部利用可" : "準備中",
+        statusType: item.templateUrl || item.sampleUrl ? "ready" : "pending",
+        scope: "共通",
+        buttonText: item.templateUrl ? "テンプレートを開く" : "準備中",
+        url: item.templateUrl,
+        note: `${item.timing} / ${item.owner}`
+      });
+
+      const inputItems = document.createElement("p");
+      inputItems.textContent = `記入内容：${normalizeArray(item.inputItems).join("、")}`;
+      card.insertBefore(inputItems, card.querySelector(".card-action"));
+
+      if (item.sampleUrl) {
+        const sample = document.createElement("a");
+        sample.className = "card-button";
+        sample.href = item.sampleUrl;
+        sample.target = "_blank";
+        sample.rel = "noopener noreferrer";
+        sample.textContent = "記入例を開く";
+        card.append(sample);
+      }
+
+      return card;
+    });
+  }
+
+  function renderFaq(facility) {
+    const faqs = scopedItems(state.data.faq, facility).sort(byScopeThenSort);
+    const byCategory = groupBy(faqs, "category");
+    const details = Object.entries(byCategory).map(([category, items], index) => {
+      const detail = document.createElement("details");
+      detail.className = "faq-category";
+      detail.open = index === 0;
+
+      const summary = document.createElement("summary");
+      summary.textContent = category;
+
+      const list = document.createElement("div");
+      list.className = "faq-items";
+      items.forEach((faq) => {
+        const item = document.createElement("article");
+        item.className = "faq-item";
+        const question = document.createElement("strong");
+        question.textContent = faq.question;
+        const answer = document.createElement("p");
+        answer.textContent = faq.answer;
+        item.append(question, answer);
+        list.append(item);
+      });
+
+      detail.append(summary, list);
+      return detail;
+    });
+
+    renderCardGrid(els.faqList, details, (item) => item);
+  }
+
+  function renderTerms() {
+    const terms = [...state.data.terms].sort(bySortOrder);
+    renderCardGrid(els.termList, terms, (term) => {
+      const card = document.createElement("article");
+      card.className = "term-card";
+      const title = document.createElement("h3");
+      title.textContent = term.term;
+      const description = document.createElement("p");
+      description.textContent = term.description;
+      card.append(title, description);
+      return card;
+    });
+  }
+
+  function renderNotices() {
+    const notices = [...state.data.notices].sort(bySortOrder);
+    els.noticeList.replaceChildren(
+      ...notices.map((notice) => createNoticeItem(notice.title, notice.body))
+    );
+  }
+
+  function renderContact() {
+    const contact = state.data.contact;
+    const panel = document.createElement("article");
+    panel.className = "contact-card";
+
+    const description = document.createElement("div");
+    description.className = "contact-description";
+    normalizeArray(contact.description).forEach((line) => {
+      const text = document.createElement("p");
+      text.textContent = line;
+      description.append(text);
+    });
+
+    const formRow = document.createElement("div");
+    formRow.className = "contact-form-row";
+    const formLabel = document.createElement("span");
+    formLabel.textContent = "問い合わせフォーム：";
+    const formLink = document.createElement("a");
+    formLink.className = "card-button contact-button";
+    formLink.href = contact.formUrl;
+    formLink.target = "_blank";
+    formLink.rel = "noopener noreferrer";
+    formLink.textContent = contact.formLabel || "問い合わせフォームを開く";
+    formRow.append(formLabel, formLink);
+
+    const detailList = document.createElement("dl");
+    detailList.className = "contact-details";
+    [
+      ["担当", contact.person],
+      ["電話", contact.phone],
+      ["対応時間", contact.hours]
+    ].forEach(([label, value]) => {
+      const term = document.createElement("dt");
+      term.textContent = label;
+      const detail = document.createElement("dd");
+      detail.textContent = value;
+      detailList.append(term, detail);
+    });
+
+    const note = document.createElement("p");
+    note.className = "contact-note";
+    note.textContent = contact.note;
+
+    panel.append(description, formRow, detailList, note);
+    els.contactPanel.replaceChildren(panel);
+  }
+
+  function createInfoCard(options) {
+    const card = document.createElement("article");
+    card.className = "info-card";
+
+    const title = document.createElement("h3");
+    title.textContent = options.title;
+
+    const description = document.createElement("p");
+    description.textContent = options.description || "説明は準備中です。";
+
+    const meta = document.createElement("div");
+    meta.className = "card-meta";
+    const status = document.createElement("span");
+    status.className = `pill ${options.statusType || ""}`;
+    status.textContent = options.status;
+    const scope = document.createElement("span");
+    scope.className = "pill scope";
+    scope.textContent = options.scope;
+    meta.append(status, scope);
+
+    if (options.note) {
+      const note = document.createElement("p");
+      note.textContent = options.note;
+      card.append(title, description, meta, note, createCardButton(options));
+      return card;
+    }
+
+    card.append(title, description, meta, createCardButton(options));
+    return card;
+  }
+
+  function createCardButton(options) {
+    if (!options.url) {
+      const status = document.createElement("span");
+      status.className = "status-message card-action";
+      status.textContent = options.buttonText || "準備中";
+      return status;
+    }
+
+    const link = document.createElement("a");
+    link.className = "card-button card-action";
+    link.href = options.url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = options.buttonText || "開く";
+    return link;
+  }
+
+  function createNoticeItem(title, body) {
+    const item = document.createElement("article");
+    item.className = "notice-item";
+    const heading = document.createElement("h3");
+    heading.textContent = title;
+    const text = document.createElement("p");
+    text.textContent = body;
+    item.append(heading, text);
+    return item;
+  }
+
+  function renderCardGrid(container, items, mapper) {
+    if (!items.length) {
       const empty = document.createElement("p");
-      empty.className = "item";
+      empty.className = "empty-state";
       empty.textContent = "現在表示できる項目はありません。";
       container.replaceChildren(empty);
       return;
     }
-    container.replaceChildren(...sorted.map(mapper));
+    container.replaceChildren(...items.map(mapper));
   }
 
-  function baseCard(item, buttonText) {
-    const ready = Boolean(item.url || item.templateUrl);
-    const article = document.createElement("article");
-    article.className = "item";
-    const targetUrl = item.url || item.templateUrl || "";
-    const action = targetUrl ? `<a class="button" target="_blank" rel="noopener noreferrer" href="${escapeAttr(targetUrl)}">${buttonText}</a>` : `<span class="button disabled">準備中</span>`;
-    article.innerHTML = `<h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.description || item.purpose || "説明は準備中です。")}</p><span class="pill ${ready ? "ready" : "pending"}">${ready ? escapeHtml(item.status || "利用可") : "準備中"}</span>${item.note ? `<p>${escapeHtml(item.note)}</p>` : ""}${action}`;
-    return article;
+  function getMunicipality(code) {
+    return state.data.municipalities.find((item) => item.municipalityCode === code) || {
+      municipalityName: "要設定"
+    };
   }
 
-  function linkCard(item) { return baseCard(item, "開く"); }
-  function contentCard(item) { return baseCard(item, "確認する"); }
-  function deliverableCard(item) {
-    const card = baseCard({ ...item, description: item.purpose, url: item.templateUrl, note: `${item.timing} / ${item.owner}` }, "テンプレートを開く");
-    const p = document.createElement("p");
-    p.textContent = `記入内容：${arr(item.inputItems).join("、")}`;
-    card.insertBefore(p, card.lastElementChild);
-    return card;
-  }
-  function termCard(item) {
-    const article = document.createElement("article");
-    article.className = "item";
-    article.innerHTML = `<h3>${escapeHtml(item.term)}</h3><p>${escapeHtml(item.description)}</p>`;
-    return article;
+  function getStep(stepId) {
+    return state.data.steps.find((item) => item.stepId === stepId) || {
+      stepName: "要設定",
+      defaultActions: []
+    };
   }
 
-  function renderFaq(facility) {
-    const groups = scoped(data.faq, facility).reduce((acc, item) => {
-      (acc[item.category] ||= []).push(item);
-      return acc;
-    }, {});
-    $("#faq-list").replaceChildren(...Object.entries(groups).map(([category, items], index) => {
-      const details = document.createElement("details");
-      details.className = "faq";
-      details.open = index === 0;
-      details.innerHTML = `<summary>${escapeHtml(category)}</summary><div>${items.sort(sort).map((item) => `<article><h3>${escapeHtml(item.question)}</h3><p>${escapeHtml(item.answer)}</p></article>`).join("")}</div>`;
-      return details;
-    }));
+  function scopedItems(items, facility) {
+    return items
+      .map((item) => ({ ...item, _scopeRank: scopeRank(item, facility) }))
+      .filter((item) => item._scopeRank < 99);
   }
 
-  function notice(title, body) {
-    const article = document.createElement("article");
-    article.innerHTML = `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(body)}</p>`;
-    return article;
-  }
-
-  function scoped(items, facility) {
-    return items.map((item) => ({ ...item, _scopeRank: scopeRank(item, facility) })).filter((item) => item._scopeRank < 99);
-  }
   function scopeRank(item, facility) {
-    if (item.facilityCode === facility.facilityCode) return 1;
-    if (item.municipalityCode === facility.municipalityCode && (!item.facilityCode || item.facilityCode === "common")) return 2;
-    if ((item.municipalityCode === "common" || !item.municipalityCode) && (!item.facilityCode || item.facilityCode === "common")) return 3;
+    if (item.facilityCode === facility.facilityCode) {
+      return 1;
+    }
+    if (item.municipalityCode === facility.municipalityCode && (!item.facilityCode || item.facilityCode === "common")) {
+      return 2;
+    }
+    if ((item.municipalityCode === "common" || !item.municipalityCode) && (!item.facilityCode || item.facilityCode === "common")) {
+      return 3;
+    }
     return 99;
   }
-  function escapeHtml(value) { return String(value ?? "").replace(/[&<>"]/g, (char) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[char])); }
-  function escapeAttr(value) { return escapeHtml(value); }
+
+  function displayScope(item, facility) {
+    if (item.facilityCode === facility.facilityCode) {
+      return "施設別";
+    }
+    if (item.municipalityCode === facility.municipalityCode) {
+      return "自治体別";
+    }
+    return "共通";
+  }
+
+  function displayStatus(item) {
+    if (item.url) {
+      return item.status || "利用可";
+    }
+    return item.displayText || item.status || "準備中";
+  }
+
+  function byScopeThenSort(a, b) {
+    return (a._scopeRank - b._scopeRank) || bySortOrder(a, b);
+  }
+
+  function bySortOrder(a, b) {
+    return (a.sortOrder ?? 999) - (b.sortOrder ?? 999);
+  }
+
+  function normalizeArray(value) {
+    if (Array.isArray(value)) {
+      return value;
+    }
+    if (!value) {
+      return [];
+    }
+    return [value];
+  }
+
+  function groupBy(items, key) {
+    return items.reduce((groups, item) => {
+      const groupKey = item[key] || "その他";
+      groups[groupKey] = groups[groupKey] || [];
+      groups[groupKey].push(item);
+      return groups;
+    }, {});
+  }
 })();

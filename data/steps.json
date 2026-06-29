@@ -1,1 +1,114 @@
-[{"stepId":"business-decision","stepName":"事業決定","defaultActions":["案内メールを確認してください","施設コードを確認してください"],"sortOrder":1},{"stepId":"first-meeting","stepName":"初回打合せ","defaultActions":["初回打合せの日程を確認してください"],"sortOrder":2},{"stepId":"intro","stepName":"活動紹介","defaultActions":["活動紹介動画を確認してください"],"sortOrder":3},{"stepId":"kickoff","stepName":"キックオフ","defaultActions":["キックオフ説明動画を確認してください"],"sortOrder":4},{"stepId":"survey","stepName":"アンケート","defaultActions":["事前アンケートに回答してください"],"sortOrder":5},{"stepId":"interview","stepName":"インタビュー","defaultActions":["インタビュー予約フォームに回答してください"],"sortOrder":6},{"stepId":"mushimegane","stepName":"問題虫めがね","defaultActions":["問題虫めがねを職員へ展開してください"],"sortOrder":7},{"stepId":"issue-organize","stepName":"課題整理","defaultActions":["課題整理の内容を確認してください"],"sortOrder":8},{"stepId":"causal","stepName":"因果関係図","defaultActions":["因果関係図のたたき台を確認してください"],"sortOrder":9},{"stepId":"planning","stepName":"施策検討","defaultActions":["介護の事例ライブラリーを確認してください"],"sortOrder":10},{"stepId":"pdca","stepName":"PDCA","defaultActions":["PDCAシートを確認してください"],"sortOrder":11},{"stepId":"numeric","stepName":"数値目標管理","defaultActions":["数値目標管理シートに入力してください"],"sortOrder":12},{"stepId":"interim","stepName":"中間報告","defaultActions":["中間報告を作成してください"],"sortOrder":13},{"stepId":"final","stepName":"最終報告","defaultActions":["最終報告の作成準備をしてください"],"sortOrder":14},{"stepId":"outcome","stepName":"成果報告","defaultActions":["成果報告アウトラインを確認してください"],"sortOrder":15},{"stepId":"case-sheet","stepName":"事例シート","defaultActions":["事例シートを確認してください"],"sortOrder":16}]
+[
+  {
+    "stepId": "business-decision",
+    "stepName": "事業決定",
+    "description": "伴走支援への参加が決まり、初回案内を確認する段階です。",
+    "defaultActions": ["案内メールを確認してください", "施設コードを確認してください"],
+    "sortOrder": 1
+  },
+  {
+    "stepId": "first-meeting",
+    "stepName": "初回打合せ",
+    "description": "事務局や支援者と進め方を確認する段階です。",
+    "defaultActions": ["初回打合せの日程を確認してください", "施設内の連絡担当を確認してください"],
+    "sortOrder": 2
+  },
+  {
+    "stepId": "intro",
+    "stepName": "活動紹介",
+    "description": "伴走支援の目的や全体像を確認する段階です。",
+    "defaultActions": ["キックオフ動画を確認してください", "伴走支援の流れを施設内で共有してください"],
+    "sortOrder": 3
+  },
+  {
+    "stepId": "kickoff",
+    "stepName": "キックオフ",
+    "description": "施設内で取り組み開始に向けた認識をそろえる段階です。",
+    "defaultActions": ["キックオフ説明動画を確認してください", "施設内の推進メンバーを確認してください"],
+    "sortOrder": 4
+  },
+  {
+    "stepId": "survey",
+    "stepName": "アンケート",
+    "description": "事前アンケートに回答し、現状を整理する段階です。",
+    "defaultActions": ["事前アンケートに回答してください", "個人情報を含めずに回答してください"],
+    "sortOrder": 5
+  },
+  {
+    "stepId": "interview",
+    "stepName": "インタビュー",
+    "description": "インタビューの日程や参加者を調整する段階です。",
+    "defaultActions": ["インタビュー予約フォームに回答してください", "参加予定者を施設内で調整してください"],
+    "sortOrder": 6
+  },
+  {
+    "stepId": "mushimegane",
+    "stepName": "問題虫めがね",
+    "description": "職員の気づきを集め、問題を見える化する段階です。",
+    "defaultActions": ["問題虫めがねを職員へ展開してください", "回答期限を施設内で確認してください"],
+    "sortOrder": 7
+  },
+  {
+    "stepId": "issue-organize",
+    "stepName": "課題整理",
+    "description": "回答やヒアリングをもとに、課題を整理する段階です。",
+    "defaultActions": ["課題整理の内容を確認してください", "気になる点を支援者へ共有してください"],
+    "sortOrder": 8
+  },
+  {
+    "stepId": "causal",
+    "stepName": "因果関係図",
+    "description": "問題の背景やつながりを整理する段階です。",
+    "defaultActions": ["因果関係図のたたき台を確認してください", "施設内で認識の違いを確認してください"],
+    "sortOrder": 9
+  },
+  {
+    "stepId": "planning",
+    "stepName": "施策検討",
+    "description": "取り組む施策の候補を検討する段階です。",
+    "defaultActions": ["介護の事例ライブラリーを確認してください", "AIコンシェルジュを考える補助として活用してください"],
+    "sortOrder": 10
+  },
+  {
+    "stepId": "pdca",
+    "stepName": "PDCA",
+    "description": "施策の実行計画と振り返りを整理する段階です。",
+    "defaultActions": ["PDCAシートを確認してください", "次回打合せまでの実施内容を整理してください"],
+    "sortOrder": 11
+  },
+  {
+    "stepId": "numeric",
+    "stepName": "数値目標管理",
+    "description": "取り組みの成果を数値で確認する段階です。",
+    "defaultActions": ["数値目標管理シートに入力してください", "入力内容を次回打合せで確認できるよう準備してください"],
+    "sortOrder": 12
+  },
+  {
+    "stepId": "interim",
+    "stepName": "中間報告",
+    "description": "途中経過と今後の進め方を整理する段階です。",
+    "defaultActions": ["中間報告を作成してください", "これまでの実施内容を整理してください"],
+    "sortOrder": 13
+  },
+  {
+    "stepId": "final",
+    "stepName": "最終報告",
+    "description": "取り組みの成果と学びをまとめる段階です。",
+    "defaultActions": ["最終報告の作成準備をしてください", "成果報告アウトラインを確認してください"],
+    "sortOrder": 14
+  },
+  {
+    "stepId": "outcome",
+    "stepName": "成果報告",
+    "description": "成果報告会や共有資料に向けて整理する段階です。",
+    "defaultActions": ["成果報告アウトラインを確認してください", "成果と今後の展開を整理してください"],
+    "sortOrder": 15
+  },
+  {
+    "stepId": "case-sheet",
+    "stepName": "事例シート",
+    "description": "事例として共有できる内容を整理する段階です。",
+    "defaultActions": ["事例シートを確認してください", "公開してよい情報だけを整理してください"],
+    "sortOrder": 16
+  }
+]
