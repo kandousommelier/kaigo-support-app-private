@@ -46,41 +46,5 @@
     "facilityCode": "common",
     "status": "準備中",
     "sortOrder": 40
-  },
-  {
-    "contentId": "pdca-guide",
-    "type": "資料",
-    "title": "PDCAシート記入ガイド",
-    "description": "PDCAシートの記入ポイントと、支援者との確認観点をまとめた資料です。",
-    "url": "",
-    "targetStep": "pdca",
-    "municipalityCode": "common",
-    "facilityCode": "common",
-    "status": "準備中",
-    "sortOrder": 50
-  },
-  {
-    "contentId": "numeric-guide",
-    "type": "資料",
-    "title": "数値目標管理シート記入ガイド",
-    "description": "数値目標の考え方、入力単位、確認タイミングをまとめた資料です。",
-    "url": "",
-    "targetStep": "numeric",
-    "municipalityCode": "common",
-    "facilityCode": "common",
-    "status": "準備中",
-    "sortOrder": 60
-  },
-  {
-    "contentId": "shiga-orientation",
-    "type": "資料",
-    "title": "滋賀県向け補足資料",
-    "description": "滋賀県対象施設向けの補足案内です。",
-    "url": "",
-    "targetStep": "intro",
-    "municipalityCode": "shiga",
-    "facilityCode": "common",
-    "status": "準備中",
-    "sortOrder": 5
   }
 ]
