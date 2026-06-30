@@ -60,7 +60,6 @@
     els.summaryStep = document.querySelector("#summary-step");
     els.summarySchedule = document.querySelector("#summary-schedule");
     els.summaryDeadline = document.querySelector("#summary-deadline");
-    els.summaryContact = document.querySelector("#summary-contact");
     els.scheduleIntro = document.querySelector("#schedule-intro");
     els.scheduleList = document.querySelector("#schedule-list");
     els.scheduleNotes = document.querySelector("#schedule-notes");
@@ -165,13 +164,12 @@
     const step = getStep(facility.currentStep);
 
     els.facilityHeading.textContent = facility.facilityName;
-    els.facilitySubheading.textContent = `${municipality.municipalityName} / ${facility.serviceType}`;
-    els.summaryMunicipality.textContent = municipality.municipalityName;
-    els.summaryService.textContent = facility.serviceType;
-    els.summaryStep.textContent = step.stepName;
-    els.summarySchedule.textContent = facility.nextSchedule || "未設定";
-    els.summaryDeadline.textContent = facility.deadline || "未設定";
-    els.summaryContact.textContent = state.data.contact.formLabel || facility.contactNote || municipality.contactNote || "案内メールをご確認ください。";
+    els.facilitySubheading.textContent = `${displayMasterValue(municipality.municipalityName)} / ${displayMasterValue(facility.serviceType)}`;
+    els.summaryMunicipality.textContent = displayMasterValue(municipality.municipalityName);
+    els.summaryService.textContent = displayMasterValue(facility.serviceType);
+    els.summaryStep.textContent = displayMasterValue(step.stepName);
+    els.summarySchedule.textContent = displayMasterValue(facility.nextSchedule || getScheduleSummaryValue(facility, "nextSchedule"));
+    els.summaryDeadline.textContent = displayMasterValue(facility.deadline || getScheduleSummaryValue(facility, "deadline"));
 
     renderSchedules(facility);
     renderProgress(facility);
@@ -484,6 +482,36 @@
       stepName: "要設定",
       defaultActions: []
     };
+  }
+
+  function getScheduleSummaryValue(facility, key) {
+    const schedule = scopedItems(state.data.schedules, facility).sort(byScopeThenSort)[0];
+    if (!schedule) {
+      return "";
+    }
+
+    if (schedule[key]) {
+      return schedule[key];
+    }
+
+    if (key === "nextSchedule") {
+      const event = normalizeArray(schedule.events)[0];
+      return event ? [event.date, event.title].filter(Boolean).join("：") : "";
+    }
+
+    if (key === "deadline") {
+      const event = normalizeArray(schedule.events).find((item) => item.deadline);
+      return event ? event.deadline : "";
+    }
+
+    return "";
+  }
+
+  function displayMasterValue(value) {
+    if (value === undefined || value === null || String(value).trim() === "") {
+      return "要設定";
+    }
+    return String(value);
   }
 
   function scopedItems(items, facility) {
