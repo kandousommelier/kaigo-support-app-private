@@ -26,18 +26,10 @@
   {
     "noticeId": "notice-external-storage",
     "category": "情報管理",
-    "title": "回答内容や成果物は指定先で管理する",
-    "body": "アンケート回答、提出物、成果物は、指定されたフォームやファイルで管理してください。伴走支援ナビ本体は回答データを保持しません。",
+    "title": "回答内容や提出物は指定先で管理する",
+    "body": "アンケート回答や提出物は、指定されたフォームやファイルで管理してください。伴走支援ナビ本体は回答データを保持しません。",
     "displayLocation": "dashboard",
     "sortOrder": 40
-  },
-  {
-    "noticeId": "notice-ai",
-    "category": "AI活用",
-    "title": "AI利用時も個人情報を入力しない",
-    "body": "AIを使う場合も、利用者名、職員名、個別ケースが特定される情報は入力しないでください。",
-    "displayLocation": "dashboard",
-    "sortOrder": 50
   },
   {
     "noticeId": "notice-auth",
