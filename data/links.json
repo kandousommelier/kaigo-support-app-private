@@ -1,42 +1,5 @@
 [
   {
-    "linkId": "common-activity-video",
-    "municipalityCode": "common",
-    "facilityCode": "common",
-    "category": "よく使うリンク",
-    "title": "キックオフ動画",
-    "description": "伴走支援の目的、全体の流れ、施設にお願いしたいことを確認する動画です。",
-    "url": "https://youtu.be/qzkH7XGMji8",
-    "status": "利用可",
-    "note": "キックオフ前に確認してください。",
-    "sortOrder": 5
-  },
-  {
-    "linkId": "facility-shiga01-survey",
-    "municipalityCode": "shiga",
-    "facilityCode": "shiga01",
-    "category": "提出・回答",
-    "title": "事前アンケート（shiga01）",
-    "description": "shiga01向けの事前アンケート回答フォームです。",
-    "url": "",
-    "status": "メールにてお知らせ",
-    "displayText": "メールにてお知らせ",
-    "note": "個人名や個別ケースは入力しないでください。",
-    "sortOrder": 1
-  },
-  {
-    "linkId": "municipality-nagano-portal",
-    "municipalityCode": "nagano",
-    "facilityCode": "common",
-    "category": "よく使うリンク",
-    "title": "長野県 連絡・提出先一覧",
-    "description": "長野県対象施設向けの提出先一覧です。",
-    "url": "",
-    "status": "準備中",
-    "note": "正式URLが確定したら設定してください。",
-    "sortOrder": 2
-  },
-  {
     "linkId": "common-survey",
     "municipalityCode": "common",
     "facilityCode": "common",
