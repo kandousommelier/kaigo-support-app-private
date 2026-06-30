@@ -1,13 +1,11 @@
 [
-  { "sectionId": "now", "title": "今やること", "description": "現在依頼している作業", "sortOrder": 1, "isVisible": true },
-  { "sectionId": "schedule", "title": "今後の予定", "description": "今後の会議・訪問予定", "sortOrder": 2, "isVisible": true },
-  { "sectionId": "progress", "title": "現在の進捗", "description": "事業全体の進捗", "sortOrder": 3, "isVisible": true },
-  { "sectionId": "links", "title": "提出・回答リンク", "description": "フォームや提出先", "sortOrder": 4, "isVisible": true },
-  { "sectionId": "materials", "title": "資料・動画", "description": "確認資料", "sortOrder": 5, "isVisible": true },
-  { "sectionId": "ai", "title": "施策検討・AI活用", "description": "検討支援リンク", "sortOrder": 6, "isVisible": true },
-  { "sectionId": "deliverables", "title": "成果物", "description": "テンプレートと記入例", "sortOrder": 7, "isVisible": true },
-  { "sectionId": "faq", "title": "FAQ", "description": "よくある質問", "sortOrder": 8, "isVisible": true },
-  { "sectionId": "terms", "title": "用語集", "description": "主な用語", "sortOrder": 9, "isVisible": true },
-  { "sectionId": "notices", "title": "利用上の注意・情報管理", "description": "情報管理の注意", "sortOrder": 10, "isVisible": true },
-  { "sectionId": "contact", "title": "問い合わせ", "description": "問い合わせフォームと電話", "sortOrder": 11, "isVisible": true }
+  { "sectionId": "schedule", "title": "今後の予定", "description": "今後の会議・訪問予定", "sortOrder": 1, "isVisible": true },
+  { "sectionId": "progress", "title": "現在の進捗", "description": "事業全体の進捗", "sortOrder": 2, "isVisible": true },
+  { "sectionId": "links", "title": "提出・回答リンク", "description": "フォームや提出先", "sortOrder": 3, "isVisible": true },
+  { "sectionId": "materials", "title": "資料・動画", "description": "確認資料", "sortOrder": 4, "isVisible": true },
+  { "sectionId": "ai", "title": "施策検討・AI活用", "description": "検討支援リンク", "sortOrder": 5, "isVisible": true },
+  { "sectionId": "faq", "title": "FAQ", "description": "よくある質問", "sortOrder": 6, "isVisible": true },
+  { "sectionId": "terms", "title": "用語集", "description": "主な用語", "sortOrder": 7, "isVisible": true },
+  { "sectionId": "notices", "title": "利用上の注意・情報管理", "description": "情報管理の注意", "sortOrder": 8, "isVisible": true },
+  { "sectionId": "contact", "title": "問い合わせ", "description": "問い合わせフォームと電話", "sortOrder": 9, "isVisible": true }
 ]
