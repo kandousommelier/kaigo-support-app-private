@@ -9,7 +9,6 @@
     progress: "data/progress.json",
     links: "data/links.json",
     contents: "data/contents.json",
-    deliverables: "data/deliverables.json",
     faq: "data/faq.json",
     terms: "data/terms.json",
     notices: "data/notices.json",
@@ -62,7 +61,6 @@
     els.summarySchedule = document.querySelector("#summary-schedule");
     els.summaryDeadline = document.querySelector("#summary-deadline");
     els.summaryContact = document.querySelector("#summary-contact");
-    els.actionList = document.querySelector("#action-list");
     els.scheduleIntro = document.querySelector("#schedule-intro");
     els.scheduleList = document.querySelector("#schedule-list");
     els.scheduleNotes = document.querySelector("#schedule-notes");
@@ -71,8 +69,6 @@
     els.submissionLinks = document.querySelector("#submission-links");
     els.contentList = document.querySelector("#content-list");
     els.aiLinks = document.querySelector("#ai-links");
-    els.aiNotes = document.querySelector("#ai-notes");
-    els.deliverableList = document.querySelector("#deliverable-list");
     els.faqList = document.querySelector("#faq-list");
     els.termList = document.querySelector("#term-list");
     els.noticeList = document.querySelector("#notice-list");
@@ -177,46 +173,15 @@
     els.summaryDeadline.textContent = facility.deadline || "未設定";
     els.summaryContact.textContent = state.data.contact.formLabel || facility.contactNote || municipality.contactNote || "案内メールをご確認ください。";
 
-    renderActions(facility, step);
     renderSchedules(facility);
     renderProgress(facility);
     renderLinks(facility);
     renderContents(facility);
     renderAiSection(facility);
-    renderDeliverables();
     renderFaq(facility);
     renderTerms();
     renderNotices();
     renderContact();
-  }
-
-  function renderActions(facility, step) {
-    const actions = normalizeArray(facility.nextAction).length
-      ? normalizeArray(facility.nextAction)
-      : normalizeArray(step.defaultActions);
-
-    els.actionList.replaceChildren(
-      ...actions.map((action, index) => {
-        const item = document.createElement("article");
-        item.className = "task-item";
-
-        const marker = document.createElement("span");
-        marker.className = "task-marker";
-        marker.textContent = index + 1;
-
-        const body = document.createElement("div");
-        const title = document.createElement("p");
-        title.className = "task-title";
-        title.textContent = action;
-        const note = document.createElement("p");
-        note.className = "task-note";
-        note.textContent = facility.contactNote || "不明点は案内メール記載の問い合わせ先へ確認してください。";
-        body.append(title, note);
-
-        item.append(marker, body);
-        return item;
-      })
-    );
   }
 
   function renderLinks(facility) {
@@ -337,43 +302,6 @@
       })
     );
 
-    els.aiNotes.replaceChildren(
-      ...state.data.config.aiUsageNotes.map((note) =>
-        createNoticeItem("AI活用時の注意", note)
-      )
-    );
-  }
-
-  function renderDeliverables() {
-    const deliverables = [...state.data.deliverables].sort(bySortOrder);
-    renderCardGrid(els.deliverableList, deliverables, (item) => {
-      const card = createInfoCard({
-        title: item.title,
-        description: item.purpose,
-        status: item.templateUrl || item.sampleUrl ? "一部利用可" : "準備中",
-        statusType: item.templateUrl || item.sampleUrl ? "ready" : "pending",
-        scope: "共通",
-        buttonText: item.templateUrl ? "テンプレートを開く" : "準備中",
-        url: item.templateUrl,
-        note: `${item.timing} / ${item.owner}`
-      });
-
-      const inputItems = document.createElement("p");
-      inputItems.textContent = `記入内容：${normalizeArray(item.inputItems).join("、")}`;
-      card.insertBefore(inputItems, card.querySelector(".card-action"));
-
-      if (item.sampleUrl) {
-        const sample = document.createElement("a");
-        sample.className = "card-button";
-        sample.href = item.sampleUrl;
-        sample.target = "_blank";
-        sample.rel = "noopener noreferrer";
-        sample.textContent = "記入例を開く";
-        card.append(sample);
-      }
-
-      return card;
-    });
   }
 
   function renderFaq(facility) {
