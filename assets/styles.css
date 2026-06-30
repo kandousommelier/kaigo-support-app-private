@@ -306,6 +306,26 @@ h3 {
   font-weight: 700;
 }
 
+.back-to-top {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--primary-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.back-to-top:hover,
+.back-to-top:focus-visible {
+  border-color: var(--primary);
+}
+
 .focus-section {
   padding-top: 18px;
 }
@@ -687,9 +707,14 @@ h3 {
   .primary-button,
   .ghost-button,
   .card-button,
-  .status-message {
+  .status-message,
+  .back-to-top {
     min-height: 52px;
     padding: 13px 16px;
+  }
+
+  .back-to-top {
+    width: 100%;
   }
 
   .task-item {
