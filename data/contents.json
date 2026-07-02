@@ -12,16 +12,15 @@
     "sortOrder": 10
   },
   {
-    "contentId": "kickoff-video-nagano",
+    "contentId": "corporate-video-nagano",
     "type": "動画",
-    "title": "キックオフ動画",
-    "description": "伴走支援の目的、全体の流れ、施設にお願いしたいことを確認する動画です。",
-    "url": "",
+    "title": "善光総合研究所企業紹介",
+    "description": "善光総合研究所の概要を確認するための動画です。",
+    "url": "https://youtu.be/mrWgHGvuOXg",
     "targetStep": "intro",
     "municipalityCode": "nagano",
     "facilityCode": "common",
-    "status": "メールにてお知らせ",
-    "displayText": "メールにてお知らせ",
+    "status": "利用可",
     "sortOrder": 10
   },
   {
@@ -29,12 +28,11 @@
     "type": "動画",
     "title": "キックオフ動画",
     "description": "伴走支援の目的、全体の流れ、施設にお願いしたいことを確認する動画です。",
-    "url": "",
+    "url": "https://youtu.be/_-szWKZb5p4",
     "targetStep": "intro",
     "municipalityCode": "matsumoto",
     "facilityCode": "common",
-    "status": "メールにてお知らせ",
-    "displayText": "メールにてお知らせ",
+    "status": "利用可",
     "sortOrder": 10
   },
   {
