@@ -24,7 +24,7 @@
     "stepId": "kickoff",
     "stepName": "キックオフ",
     "description": "施設内で取り組み開始に向けた認識をそろえる段階です。",
-    "defaultActions": ["キックオフ説明動画を確認してください", "施設内の推進メンバーを確認してください"],
+    "defaultActions": ["キックオフ動画を確認してください", "施設内の推進メンバーを確認してください"],
     "sortOrder": 4
   },
   {
@@ -47,6 +47,34 @@
     "description": "職員の気づきを集め、問題を見える化する段階です。",
     "defaultActions": ["問題虫めがねを職員へ展開してください", "回答期限を施設内で確認してください"],
     "sortOrder": 7
+  },
+  {
+    "stepId": "survey-to-interview",
+    "stepName": "アンケート→インタビュー",
+    "description": "アンケート結果をもとに、インタビューで課題を深掘りする段階です。",
+    "defaultActions": ["アンケート結果を確認してください", "インタビューで確認したい点を整理してください"],
+    "sortOrder": 7.1
+  },
+  {
+    "stepId": "kickoff-to-interview",
+    "stepName": "キックオフ→インタビュー",
+    "description": "キックオフ後、インタビューで課題を深掘りする段階です。",
+    "defaultActions": ["キックオフ内容を施設内で共有してください", "インタビューで確認したい点を整理してください"],
+    "sortOrder": 7.2
+  },
+  {
+    "stepId": "mushimegane-to-interview",
+    "stepName": "問題虫めがね→インタビュー",
+    "description": "問題虫めがねの内容をもとに、インタビューで課題を深掘りする段階です。",
+    "defaultActions": ["問題虫めがねの内容を確認してください", "インタビューで確認したい点を整理してください"],
+    "sortOrder": 7.3
+  },
+  {
+    "stepId": "pdca-to-interview",
+    "stepName": "PDCA→インタビュー",
+    "description": "PDCAの状況をもとに、インタビューで課題を深掘りする段階です。",
+    "defaultActions": ["PDCAの状況を確認してください", "インタビューで確認したい点を整理してください"],
+    "sortOrder": 7.4
   },
   {
     "stepId": "issue-organize",
