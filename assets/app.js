@@ -101,6 +101,7 @@
       els.loginView.classList.remove("hidden");
       els.entryForm.reset();
       showMessage("");
+      buildSectionNav();
       els.commonId.focus();
     });
   }
@@ -145,9 +146,9 @@
     els.formMessage.textContent = message;
   }
 
-  function buildSectionNav() {
+  function buildSectionNav(facility = null) {
     const pages = [...state.data.pages]
-      .filter((page) => page.isVisible)
+      .filter((page) => isSectionVisible(page, facility))
       .sort(bySortOrder);
     els.sectionNav.replaceChildren(
       ...pages.map((page) => {
@@ -159,9 +160,34 @@
     );
   }
 
+  function applySectionVisibility(facility) {
+    state.data.pages.forEach((page) => {
+      const section = document.getElementById(page.sectionId);
+      if (!section) {
+        return;
+      }
+      section.classList.toggle("hidden", !isSectionVisible(page, facility));
+    });
+  }
+
+  function isSectionVisible(page, facility = null) {
+    if (!page.isVisible) {
+      return false;
+    }
+    if (!facility) {
+      return true;
+    }
+    const municipality = getMunicipality(facility.municipalityCode);
+    const hiddenSections = normalizeArray(municipality.hiddenSections);
+    return !hiddenSections.includes(page.sectionId);
+  }
+
   function renderDashboard(facility) {
     const municipality = getMunicipality(facility.municipalityCode);
     const step = getStep(facility.currentStep);
+
+    buildSectionNav(facility);
+    applySectionVisibility(facility);
 
     els.facilityHeading.textContent = facility.facilityName;
     els.facilitySubheading.textContent = `${displayMasterValue(municipality.municipalityName)} / ${displayMasterValue(facility.serviceType)}`;
@@ -515,6 +541,7 @@
 
   function scopedItems(items, facility) {
     return items
+      .filter((item) => item.isVisible !== false)
       .map((item) => ({ ...item, _scopeRank: scopeRank(item, facility) }))
       .filter((item) => item._scopeRank < 99);
   }
