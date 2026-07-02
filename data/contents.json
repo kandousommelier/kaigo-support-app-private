@@ -4,12 +4,11 @@
     "type": "動画",
     "title": "キックオフ動画",
     "description": "伴走支援の目的、全体の流れ、施設にお願いしたいことを確認する動画です。",
-    "url": "",
+    "url": "https://youtu.be/qzkH7XGMji8",
     "targetStep": "intro",
     "municipalityCode": "shiga",
     "facilityCode": "common",
-    "status": "メールにてお知らせ",
-    "displayText": "メールにてお知らせ",
+    "status": "利用可",
     "sortOrder": 10
   },
   {
