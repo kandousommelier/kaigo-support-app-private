@@ -144,6 +144,75 @@
     "sortOrder": 5
   },
   {
+    "progressId": "matsumoto-main",
+    "municipalityCode": "matsumoto",
+    "facilityCode": "common",
+    "description": "本事業の現在の進捗は以下のとおりです。",
+    "items": [
+      {
+        "status": "済",
+        "state": "done",
+        "title": "事前把握・初回確認",
+        "description": "基本情報、事前確認、事業説明、進め方を確認"
+      },
+      {
+        "status": "今ここ",
+        "state": "current",
+        "title": "ヒアリング・課題把握",
+        "description": "事前調査をもとに、現場課題や取組テーマを深掘り"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "改善活動の準備・課題の見える化",
+        "description": "職員への周知、取組体制の確認、現場の困りごとや業務上の課題を整理"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "現地支援",
+        "description": "現場確認、課題構造の整理、取組テーマ、KPI、実行計画の方向性を確認"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "オンライン指導①",
+        "description": "実行計画の具体化、短期改善策の確認、改善活動の進め方を助言"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "改善活動・効果確認",
+        "description": "改善活動を実施し、取組状況や効果を確認"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "オンライン指導②",
+        "description": "効果測定、振り返り、実行計画の見直しを支援"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "成果整理・報告書作成",
+        "description": "支援経過、業務分析結果、KPI、成功要因・阻害要因、横展開に向けた提言を整理"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "成果報告動画・発表資料作成",
+        "description": "モデル事業所の取組内容を、事前視聴用の動画・発表資料として整理"
+      },
+      {
+        "status": "未着手",
+        "state": "todo",
+        "title": "成果報告会・交流会",
+        "description": "事前視聴を踏まえ、モデル事業所と市内事業所による質疑応答・意見交換を実施"
+      }
+    ],
+    "sortOrder": 5
+  },
+  {
     "progressId": "common-main",
     "municipalityCode": "common",
     "facilityCode": "common",
