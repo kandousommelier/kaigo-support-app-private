@@ -78,6 +78,21 @@
     "sortOrder": 5
   },
   {
+    "progressId": "kawasaki-main",
+    "municipalityCode": "kawasaki",
+    "facilityCode": "common",
+    "description": "本事業の現在の進捗は以下のとおりです。",
+    "items": [
+      { "status": "未着手", "state": "todo", "title": "問題虫めがね", "description": "職員の「困った」を集める" },
+      { "status": "未着手", "state": "todo", "title": "因果関係図", "description": "課題構造を整理" },
+      { "status": "未着手", "state": "todo", "title": "クイックウィン・ショートウィン", "description": "短期改善実行計画を作成" },
+      { "status": "未着手", "state": "todo", "title": "活動実施・PDCA", "description": "改善活動を実施" },
+      { "status": "未着手", "state": "todo", "title": "モニタリング・効果測定", "description": "効果を確認" },
+      { "status": "未着手", "state": "todo", "title": "事例発表会", "description": "事業所からの発表" }
+    ],
+    "sortOrder": 5
+  },
+  {
     "progressId": "common-main",
     "municipalityCode": "common",
     "facilityCode": "common",
