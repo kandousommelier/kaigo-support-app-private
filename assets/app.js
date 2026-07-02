@@ -276,7 +276,7 @@
         status: displayStatus(item),
         statusType: item.url ? "ready" : "pending",
         scope: displayScope(item, facility),
-        buttonText: item.url ? "確認する" : displayStatus(item),
+        buttonText: item.url ? "開く" : displayStatus(item),
         url: item.url,
         note: item.type
       })
@@ -299,7 +299,6 @@
         note: item.note
       })
     );
-
   }
 
   function renderFaq(facility) {
