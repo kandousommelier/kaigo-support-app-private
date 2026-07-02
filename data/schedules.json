@@ -1,5 +1,47 @@
 [
   {
+    "scheduleId": "nagano-main",
+    "municipalityCode": "nagano",
+    "facilityCode": "common",
+    "description": "今後の予定は以下のとおりです。",
+    "nextSchedule": "気づきシート提出",
+    "deadline": "7月7日",
+    "events": [
+      {
+        "date": "7月7日",
+        "title": "気づきシート提出",
+        "participants": "管理者・推進リーダー・関係職員",
+        "deadline": "7月7日"
+      },
+      {
+        "date": "日程調整中",
+        "title": "定例会",
+        "participants": "管理者・推進リーダー"
+      },
+      {
+        "date": "日程調整中",
+        "title": "初回訪問（2時間）",
+        "participants": "管理者・推進リーダー・関係職員"
+      },
+      {
+        "date": "日程調整中",
+        "title": "中間報告会",
+        "participants": "全モデル事業所"
+      },
+      {
+        "date": "日程調整中",
+        "title": "最終報告会",
+        "participants": "全モデル事業所"
+      }
+    ],
+    "notes": [
+      "長野県では、問題虫めがねの代替として気づきシートを使用します。",
+      "気づきシートの納期は7月7日です。",
+      "本事業では、定例会で進捗や次に行うことを確認します。"
+    ],
+    "sortOrder": 5
+  },
+  {
     "scheduleId": "common-main",
     "municipalityCode": "common",
     "facilityCode": "common",
