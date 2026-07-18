@@ -49,13 +49,6 @@
     "sortOrder": 70
   },
   {
-    "termId": "term-ai-concierge",
-    "term": "AIコンシェルジュ",
-    "description": "施策検討や文章整理の補助として活用するAIツールです。個人情報は入力しません。",
-    "relatedStep": "planning",
-    "sortOrder": 80
-  },
-  {
     "termId": "term-case-library",
     "term": "事例ライブラリー",
     "description": "他施設の取り組み事例を参考にし、自施設の施策検討に生かすための情報源です。",
