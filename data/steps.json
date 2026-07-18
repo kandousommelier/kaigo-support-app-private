@@ -35,6 +35,13 @@
     "sortOrder": 5
   },
   {
+    "stepId": "survey-mushimegane",
+    "stepName": "アンケート・問題虫めがね",
+    "description": "アンケートと問題虫めがねを進め、現状や職員の気づきを整理する段階です。",
+    "defaultActions": ["アンケートを確認してください", "問題虫めがねを職員へ展開してください"],
+    "sortOrder": 5.5
+  },
+  {
     "stepId": "interview",
     "stepName": "インタビュー",
     "description": "インタビューの日程や参加者を調整する段階です。",
