@@ -1,9 +1,13 @@
 (() => {
   const TARGET_CODES = new Set(["kawasaki01", "kawasaki02"]);
 
-  function isTargetFacility() {
+  function currentFacilityCode() {
     const input = document.querySelector("#facility-code");
-    return Boolean(input && TARGET_CODES.has(input.value.trim().toLowerCase()));
+    return input ? input.value.trim().toLowerCase() : "";
+  }
+
+  function isTargetFacility() {
+    return TARGET_CODES.has(currentFacilityCode());
   }
 
   function applyFix() {
@@ -12,7 +16,7 @@
     }
 
     const step = document.querySelector("#summary-step");
-    if (step) {
+    if (step && step.textContent.trim() !== "アンケート・問題虫めがね") {
       step.textContent = "アンケート・問題虫めがね";
     }
 
@@ -25,18 +29,13 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    const dashboard = document.querySelector("#dashboard-view");
-    if (!dashboard) {
-      return;
+    const form = document.querySelector("#entry-form");
+    if (form) {
+      form.addEventListener("submit", () => {
+        window.setTimeout(applyFix, 0);
+        window.setTimeout(applyFix, 50);
+        window.setTimeout(applyFix, 200);
+      });
     }
-
-    const observer = new MutationObserver(applyFix);
-    observer.observe(dashboard, { childList: true, subtree: true, characterData: true });
-    document.querySelector("#entry-form")?.addEventListener("submit", () => {
-      window.setTimeout(applyFix, 0);
-      window.setTimeout(applyFix, 50);
-      window.setTimeout(applyFix, 200);
-    });
-    applyFix();
   });
 })();
